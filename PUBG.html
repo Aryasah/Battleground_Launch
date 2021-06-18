@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>PUBG Learning</title>
+	<link rel="stylesheet" type="text/css" href="PUBG.css">
+</head>
+<body>
+	<section>
+		<audio id='audio' src='sound.wav' autostart='false'></audio>
+	</section>
+<script>
+	document.addEventListener('click',function(e) {
+		let body =document.querySelector('body');
+		let bullet = document.createElement('span');
+		bullet.classList.add('bullet');
+		let x = e.offsetX;
+		let y = e.offsetY;
+		bullet.style.left = x + 'px';
+		bullet.style.top = y + 'px';
+		body.appendChild(bullet);
+
+		//after 4s remove bullet and blood
+		setTimeout( function(){
+			bullet.remove();
+			blood.remove();
+		},3000 )
+		//sounds
+		let sound = document.getElementById('audio');
+		sound.play();
+		//onClick appear blood
+		let images =['url(blood1.png)',
+		'url(blood2.png)',
+		'url(blood3.png)',
+		'url(blood4.png)'
+		]
+		
+		// appear blood
+		let blood =document.createElement('span');
+		blood.classList.add('blood');
+
+		let bg = images[Math.floor(Math.random()*images.length)];
+		blood.style.backgroundImage=bg;
+
+		blood.style.left= Math.random()* innerWidth + 'px';
+		blood.style.top= Math.random()* innerHeight + 'px';
+
+		body.appendChild(blood);
+	})
+</script>	
+</body>
+</html>
